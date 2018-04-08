@@ -8,21 +8,30 @@
 // react deps
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+import { Provider } from "react-redux";
+
 // hot reload for development
 import { AppContainer } from 'react-hot-loader';
 
 import App from './App';
 
 import './style.scss';
+import configureStore from '../redux/configureStore';
 
+const store = configureStore();
 const root = document.getElementById('root');
 
 const render = (Component) => {
   ReactDOM.render(
-    <AppContainer>
-      <Component />
-    </AppContainer>,
-    root,
+    <Provider store={store}>
+      <React.Fragment>
+        <AppContainer>
+          <Component />
+        </AppContainer>
+      </React.Fragment>
+    </Provider>,
+    root
   );
 };
 
