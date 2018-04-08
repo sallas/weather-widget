@@ -10,8 +10,6 @@ const initialState = {
 
 export const theReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "SOMETHING_HAPPENING":
-      return { ...state, city: "Odense" };
     case "FETCHING_SUCCESS":
       return {
         ...state,
