@@ -1,0 +1,1 @@
+Starter code taken from https://www.npmjs.com/package/simple-react-app
