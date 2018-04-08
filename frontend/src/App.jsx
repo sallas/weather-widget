@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from "react-redux";
-import request from 'superagent';
-import createHistory from 'history/createBrowserHistory'
+import createHistory from 'history/createBrowserHistory';
+import api from '../util/api';
 
 const history = createHistory()
 
@@ -15,17 +15,11 @@ const mapStateToProps = ({
   newCity,
 });
 
-const myFetchFunction = (query = '') => {
-  return request.get(`http://localhost:3001/${query}`);
-};
-
 const asyncAction = (newCity) => (dispatch, getState) => {
-  const query = newCity ? `?city=${newCity}` : undefined;
-
-  return myFetchFunction(query)
+  return api.getWeather(newCity)
     .then(response => {
       dispatch({ type: "FETCHING_SUCCESS", payload: { data: response.body } })
-      history.push(query);
+      history.push(newCity ? `?city=${newCity}` : '');
     });
 };
 
